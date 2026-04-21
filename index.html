@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yassir Mouyiwa — Cybersécurité & Systèmes embarqués</title>
+  <meta name="description" content="Portfolio — Moussa Yassir Mouyiwa, ENSA Tétouan. Cybersécurité offensive, systèmes embarqués.">
+  <meta name="author" content="Moussa Yassir Mouyiwa">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  :root {
+    --bg:      #0c0c0b;
+    --surf:    #131312;
+    --surf2:   #1a1a18;
+    --border:  rgba(255,255,255,.07);
+    --border2: rgba(255,255,255,.12);
+    --fg:      #f0ede6;
+    --fg-2:    #9a9690;
+    --fg-3:    #4a4844;
+    --danger:  #c0715a;
+    --serif:   "DM Serif Display", Georgia, serif;
+    --sans:    "DM Sans", system-ui, sans-serif;
+    --mono:    "DM Mono", monospace;
+    --max:     1100px;
+    --ease:    cubic-bezier(.16,1,.3,1);
+  }
+  [data-theme="light"] {
+    --bg:      #f8f6f1;
+    --surf:    #f0ede6;
+    --surf2:   #e8e4da;
+    --border:  rgba(0,0,0,.08);
+    --border2: rgba(0,0,0,.14);
+    --fg:      #0c0c0b;
+    --fg-2:    #6a6660;
+    --fg-3:    #b0ada6;
+    --danger:  #a0503c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background .25s, color .25s;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: inherit; }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: .018;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { position: relative; z-index: 1; }
+
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+  @media (min-width: 768px) { .container { padding: 0 3rem; } }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: .78rem;
+    letter-spacing: .04em; color: var(--fg-2); font-weight: 500;
+  }
+  .nav-logo strong { color: var(--fg); font-weight: 500; }
+  .nav-actions { display: flex; align-items: center; gap: .5rem; }
+  .nav-links { display: none; align-items: center; gap: 2rem; margin-right: 2rem; }
+  @media (min-width: 680px) { .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: .75rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--fg-2); transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .ctl {
+    background: none; border: 1px solid var(--border2);
+    color: var(--fg-3); font-family: var(--mono); font-size: .7rem;
+    padding: .28rem .6rem; border-radius: 3px;
+    transition: border-color .2s, color .2s;
+  }
+  .ctl:hover { border-color: var(--fg-2); color: var(--fg-2); }
+
+  /* HERO */
+  .hero { padding: 7rem 0 5rem; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .hero { padding: 10rem 0 6rem; } }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: .7rem;
+    font-family: var(--mono); font-size: .7rem;
+    color: var(--fg-3); letter-spacing: .14em; text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .dot-live {
+    width: 6px; height: 6px; background: var(--fg-2);
+    border-radius: 50%; animation: blink 3s ease-in-out infinite; flex-shrink: 0;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 400; line-height: .95; letter-spacing: -.025em;
+    color: var(--fg); margin-bottom: 2.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--fg-2); }
+
+  .hero-row {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  @media (min-width: 720px) {
+    .hero-row { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 4rem; }
+  }
+  .hero-bio { font-size: .95rem; color: var(--fg-2); line-height: 1.75; max-width: 420px; font-weight: 300; }
+  .hero-cta { display: flex; gap: .8rem; flex-shrink: 0; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+    padding: .65rem 1.2rem; border-radius: 3px; font-weight: 500;
+    transition: all .2s var(--ease); white-space: nowrap;
+  }
+  .btn-solid { background: var(--fg); color: var(--bg); border: 1px solid var(--fg); }
+  .btn-solid:hover { opacity: .82; }
+  .btn-outline { background: transparent; color: var(--fg-2); border: 1px solid var(--border2); }
+  .btn-outline:hover { border-color: var(--fg-2); color: var(--fg); }
+
+  /* SECTION HEADER */
+  .sec-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem;
+  }
+  .sec-label {
+    font-family: var(--mono); font-size: .68rem;
+    color: var(--fg-3); letter-spacing: .18em; text-transform: uppercase;
+  }
+  .sec-title {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400; letter-spacing: -.015em; color: var(--fg); line-height: 1.1;
+  }
+
+  /* FOCUS */
+  #focus { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { #focus { padding: 6rem 0; } }
+  .focus-grid { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 680px) { .focus-grid { grid-template-columns: repeat(3, 1fr); } }
+  .focus-card {
+    padding: 2.2rem 2rem; border: 1px solid var(--border);
+    margin: -1px 0 0 -1px; transition: background .2s;
+  }
+  .focus-card:hover { background: var(--surf); }
+  .focus-idx { font-family: var(--mono); font-size: .6rem; color: var(--fg-3); letter-spacing: .15em; margin-bottom: 1.2rem; }
+  .focus-card h3 { font-family: var(--sans); font-weight: 500; font-size: .95rem; color: var(--fg); margin-bottom: .7rem; }
+  .focus-card p { font-size: .82rem; color: var(--fg-2); line-height: 1.65; font-weight: 300; }
+
+  /* PROJECTS */
+  #projects { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { #projects { padding: 6rem 0; } }
+
+  .project-item {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+    padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+  }
+  .project-item:last-child { border-bottom: none; }
+  @media (min-width: 768px) {
+    .project-item {
+      grid-template-columns: 1fr auto; align-items: center; gap: 3rem;
+      padding: 2.5rem 1.5rem; border-radius: 4px; border-bottom: none;
+      margin: 0 -1.5rem; transition: background .18s;
+    }
+    .project-item + .project-item { border-top: 1px solid var(--border); }
+    .project-item:hover { background: var(--surf); }
+  }
+
+  .proj-meta { display: flex; align-items: baseline; gap: 1rem; margin-bottom: .7rem; }
+  .proj-idx { font-family: var(--mono); font-size: .62rem; color: var(--fg-3); letter-spacing: .1em; }
+  .proj-year { font-family: var(--mono); font-size: .62rem; color: var(--fg-3); letter-spacing: .08em; }
+
+  .proj-title {
+    font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 400; letter-spacing: -.015em; color: var(--fg);
+    margin-bottom: .6rem; line-height: 1.2;
+  }
+  .proj-desc { font-size: .83rem; color: var(--fg-2); line-height: 1.65; max-width: 540px; font-weight: 300; margin-bottom: 1rem; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .tag {
+    font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--fg-3); padding: .15rem .45rem;
+    border: 1px solid var(--border); border-radius: 2px;
+  }
+  .tag-priv {
+    color: var(--danger);
+    border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+    background: color-mix(in srgb, var(--danger) 6%, transparent);
+  }
+
+  .proj-action { display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; flex-shrink: 0; }
+  @media (min-width: 768px) { .proj-action { align-items: flex-end; } }
+
+  .repo-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--mono); font-size: .7rem; letter-spacing: .06em;
+    color: var(--fg-2); padding: .55rem 1rem; border: 1px solid var(--border2);
+    border-radius: 3px; transition: border-color .18s, color .18s, background .18s; white-space: nowrap;
+  }
+  .repo-btn:hover { border-color: var(--fg); color: var(--fg); background: var(--surf2); }
+  .repo-btn svg { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
+  .priv-note { font-family: var(--mono); font-size: .6rem; color: var(--fg-3); letter-spacing: .06em; }
+
+  /* CONTACT */
+  #contact { padding: 5rem 0 6rem; }
+  @media (min-width: 768px) { #contact { padding: 6rem 0 8rem; } }
+  .contact-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+  @media (min-width: 720px) { .contact-layout { grid-template-columns: 1fr 1fr; align-items: start; gap: 6rem; } }
+  .contact-layout h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -.02em;
+    line-height: 1.1; color: var(--fg); margin-bottom: 1rem;
+  }
+  .contact-layout h2 em { font-style: italic; color: var(--fg-2); }
+  .contact-layout > div > p { font-size: .85rem; color: var(--fg-2); line-height: 1.7; font-weight: 300; }
+  .contact-entries { display: flex; flex-direction: column; gap: 1.8rem; }
+  .c-label { font-family: var(--mono); font-size: .6rem; color: var(--fg-3); letter-spacing: .18em; text-transform: uppercase; margin-bottom: .3rem; }
+  .c-val { font-size: .9rem; color: var(--fg-2); font-weight: 300; transition: color .18s; }
+  a.c-val:hover { color: var(--fg); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .6rem; }
+  footer span { font-family: var(--mono); font-size: .62rem; color: var(--fg-3); letter-spacing: .07em; }
+
+  /* LANG */
+  [lang-fr], [lang-en] { display: none; }
+  html[lang="fr"] [lang-fr] { display: initial; }
+  html[lang="en"] [lang-en] { display: initial; }
+
+  /* REVEAL */
+  .r { opacity: 0; transform: translateY(12px); animation: rise .65s var(--ease) forwards; }
+  .r:nth-child(1){animation-delay:.04s} .r:nth-child(2){animation-delay:.11s}
+  .r:nth-child(3){animation-delay:.19s} .r:nth-child(4){animation-delay:.28s}
+  .r:nth-child(5){animation-delay:.38s}
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .r { opacity: 1; transform: none; }
+  }
+
+  ::selection { background: var(--fg); color: var(--bg); }
+  :focus-visible { outline: 1px solid var(--fg-2); outline-offset: 3px; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--fg-3); }
+  </style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo"><strong>yassir.mouyiwa</strong> / cyberStdnt</div>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#focus"><span lang-fr>Domaines</span><span lang-en>Focus</span></a>
+          <a href="#projects"><span lang-fr>Projets</span><span lang-en>Projects</span></a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="ctl" id="langBtn">EN</button>
+        <button class="ctl" id="themeBtn">○</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow r">
+      <span class="dot-live"></span>
+      <span lang-fr>Disponible · stage / PFE — ENSA Tétouan, Maroc</span>
+      <span lang-en>Available · internship / capstone — ENSA Tétouan, Morocco</span>
+    </div>
+    <h1 class="r">Moussa<br>Yassir <em>Mouyiwa</em></h1>
+    <div class="hero-row">
+      <p class="hero-bio r" lang-fr>Étudiant ingénieur à l'ENSA Tétouan. Je construis et je casse — côté réseau, côté matériel. Sécurité offensive & défensive, systèmes embarqués, bas niveau.</p>
+      <p class="hero-bio r" lang-en>Engineering student at ENSA Tétouan. I build things and break them — at the network layer and at the silicon layer. Offensive & defensive security, embedded systems, low-level.</p>
+      <div class="hero-cta r">
+        <a href="#projects" class="btn btn-solid"><span lang-fr>Projets →</span><span lang-en>Projects →</span></a>
+        <a href="https://github.com/cyberStdnt" target="_blank" rel="noopener" class="btn btn-outline">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="focus">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-label"><span lang-fr>01 — Domaines</span><span lang-en>01 — Focus</span></span>
+      <span class="sec-title"><span lang-fr>Ce sur quoi je travaille</span><span lang-en>What I work on</span></span>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <p class="focus-idx">01 —</p>
+        <h3><span lang-fr>Cybersécurité</span><span lang-en>Cybersecurity</span></h3>
+        <p lang-fr>Sécurité offensive et défensive. Pentest web, attaques sans-fil, labs isolés, démontage de protocoles.</p>
+        <p lang-en>Offensive and defensive security. Web pentesting, wireless attacks, isolated labs, protocol teardown.</p>
+      </div>
+      <div class="focus-card">
+        <p class="focus-idx">02 —</p>
+        <h3><span lang-fr>Systèmes embarqués</span><span lang-en>Embedded Systems</span></h3>
+        <p lang-fr>Programmation bas niveau. ESP32, AVR, UART / SPI / I²C. L'intersection matériel / sécurité est ma zone.</p>
+        <p lang-en>Low-level programming. ESP32, AVR, UART / SPI / I²C. The hardware/security intersection is my zone.</p>
+      </div>
+      <div class="focus-card">
+        <p class="focus-idx">03 —</p>
+        <h3><span lang-fr>IA & Sécurité</span><span lang-en>AI & Security</span></h3>
+        <p lang-fr>ML appliqué à la détection d'intrusions, analyse de malwares, fuzzing assisté.</p>
+        <p lang-en>ML applied to intrusion detection, malware analysis, assisted fuzzing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-label"><span lang-fr>02 — Projets</span><span lang-en>02 — Projects</span></span>
+      <span class="sec-title"><span lang-fr>Travaux sélectionnés</span><span lang-en>Selected work</span></span>
+    </div>
+
+    <div class="project-item">
+      <div class="proj-left">
+        <div class="proj-meta"><span class="proj-idx">001</span><span class="proj-year">2026</span></div>
+        <h3 class="proj-title"><span lang-fr>Protocoles de routage Cisco</span><span lang-en>Cisco Routing Protocols</span></h3>
+        <p class="proj-desc" lang-fr>4 labs Packet Tracer — routage statique, RIPv1, RIPv2 avec VLSM, OSPFv2 mono-zone. Topologies, configs IOS, rapports de TP.</p>
+        <p class="proj-desc" lang-en>4 Packet Tracer labs — static routing, RIPv1, RIPv2 with VLSM, single-area OSPFv2. Topologies, full IOS configs, lab reports.</p>
+        <div class="proj-tags">
+          <span class="tag">Cisco IOS</span><span class="tag">OSPF</span>
+          <span class="tag">RIPv2</span><span class="tag">VLSM</span>
+          <span class="tag">Packet Tracer</span>
+        </div>
+      </div>
+      <div class="proj-action">
+        <a href="https://github.com/cyberStdnt/cisco-routing-packet-tracer" target="_blank" rel="noopener" class="repo-btn">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span lang-fr>Voir le dépôt</span><span lang-en>View repo</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="proj-left">
+        <div class="proj-meta"><span class="proj-idx">002</span><span class="proj-year">2026</span></div>
+        <h3 class="proj-title">Evil Twin Portal — ESP32-S3</h3>
+        <p class="proj-desc" lang-fr>Firmware autonome — rogue AP 802.11, portail captif, validation live du mot de passe. Étude offensive sur les réseaux Wi-Fi.</p>
+        <p class="proj-desc" lang-en>Standalone firmware — 802.11 rogue AP, captive portal, live password validation. Offensive Wi-Fi research study.</p>
+        <div class="proj-tags">
+          <span class="tag">ESP32-S3</span><span class="tag">C++</span>
+          <span class="tag">802.11</span><span class="tag">Arduino</span>
+          <span class="tag tag-priv">🔒 private</span>
+        </div>
+      </div>
+      <div class="proj-action">
+        <a href="mailto:yassirmoussa754@gmail.com?subject=Accès — evil-twin-esp32" class="repo-btn">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span lang-fr>Demander l'accès</span><span lang-en>Request access</span>
+        </a>
+        <span class="priv-note" lang-fr>accès sur demande motivée</span>
+        <span class="priv-note" lang-en>access on justified request</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-label">03 — Contact</span>
+      <span class="sec-title"><span lang-fr>Me joindre</span><span lang-en>Get in touch</span></span>
+    </div>
+    <div class="contact-layout">
+      <div>
+        <h2 lang-fr>Un projet,<br>un stage,<br><em>une idée ?</em></h2>
+        <h2 lang-en>A project,<br>an internship,<br><em>an idea?</em></h2>
+        <p lang-fr>Ouvert aux messages. Pour les sujets sensibles ou l'accès à un dépôt privé, l'email est préférable.</p>
+        <p lang-en>Open to messages. For sensitive matters or private-repo access, email is preferred.</p>
+      </div>
+      <div class="contact-entries">
+        <div><p class="c-label">Email</p><a class="c-val" href="mailto:yassirmoussa754@gmail.com">yassirmoussa754@gmail.com</a></div>
+        <div><p class="c-label">GitHub</p><a class="c-val" href="https://github.com/cyberStdnt" target="_blank" rel="noopener">github.com/cyberStdnt</a></div>
+        <div>
+          <p class="c-label"><span lang-fr>Localisation</span><span lang-en>Location</span></p>
+          <span class="c-val">Tétouan, Maroc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>© <span id="yr"></span> Moussa Yassir Mouyiwa</span>
+      <span>ENSA Tétouan · <span lang-fr>Cybersécurité & Embarqués</span><span lang-en>Security & Embedded</span></span>
+      <span>built from terminal</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  const html = document.documentElement;
+  const langBtn = document.getElementById("langBtn");
+  const setLang = l => {
+    html.setAttribute("lang", l);
+    if (langBtn) langBtn.textContent = l === "fr" ? "EN" : "FR";
+    document.title = l === "fr"
+      ? "Yassir Mouyiwa — Cybersécurité & Systèmes embarqués"
+      : "Yassir Mouyiwa — Cybersecurity & Embedded Systems";
+    try { localStorage.setItem("lang", l); } catch(_){}
+  };
+  let lang = "fr";
+  try { const s = localStorage.getItem("lang"); if (s==="fr"||s==="en") lang=s; } catch(_){}
+  setLang(lang);
+  langBtn?.addEventListener("click", () => setLang(html.getAttribute("lang")==="fr"?"en":"fr"));
+
+  const themeBtn = document.getElementById("themeBtn");
+  const setTheme = t => {
+    html.setAttribute("data-theme", t);
+    if (themeBtn) themeBtn.textContent = t === "dark" ? "○" : "●";
+    try { localStorage.setItem("theme", t); } catch(_){}
+  };
+  let theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  try { const s = localStorage.getItem("theme"); if (s==="dark"||s==="light") theme=s; } catch(_){}
+  setTheme(theme);
+  themeBtn?.addEventListener("click", () => setTheme(html.getAttribute("data-theme")==="dark"?"light":"dark"));
+
+  const yr = document.getElementById("yr");
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  const nav = document.querySelector(".nav");
+  if (nav) window.addEventListener("scroll", () => {
+    nav.style.boxShadow = window.scrollY > 4 ? "0 1px 0 var(--border), 0 8px 32px rgba(0,0,0,.2)" : "";
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>

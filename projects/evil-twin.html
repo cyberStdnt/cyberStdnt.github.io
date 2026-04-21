@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="fr"
+      data-theme="light"
+      data-title-fr="Evil Twin Portal · ESP32-S3 — Yassir Mouyiwa"
+      data-title-en="Evil Twin Portal · ESP32-S3 — Yassir Mouyiwa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1917" media="(prefers-color-scheme: dark)">
+  <title>Evil Twin Portal · ESP32-S3 — Yassir Mouyiwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">yassir<span class="dot">.</span>mouyiwa</a>
+    <div class="nav-links">
+      <a href="../index.html#projects">← <span lang-block="fr">Projets</span><span lang-block="en">Projects</span></a>
+    </div>
+    <div class="nav-controls">
+      <button class="icon-btn" data-lang-toggle aria-label="Switch language">EN</button>
+      <button class="icon-btn" data-theme-toggle aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <section class="project-hero">
+    <div class="container">
+      <div class="crumb">
+        <a href="../index.html">home</a><span class="sep">/</span><a href="../index.html#projects">projects</a><span class="sep">/</span>evil-twin
+      </div>
+
+      <h1>
+        Evil Twin Portal <span class="italic-serif">· ESP32-S3</span>
+      </h1>
+
+      <p class="lead" lang-block="fr">
+        Firmware autonome pour ESP32-S3. Monté sur un module à 5 €, il se comporte comme un rogue Access Point avec panneau d'administration web, scanner Wi-Fi intégré, injection de trames <em>deauthentication</em> 802.11 sans saut de canal, et portail captif qui valide <strong>en temps réel</strong> le mot de passe saisi contre le vrai réseau cible. Étude pédagogique construite pour documenter les failles intrinsèques de WPA2-Personal et argumenter la migration vers WPA3-SAE + 802.11w.
+      </p>
+      <p class="lead" lang-block="en">
+        Standalone firmware for ESP32-S3. Running on a €5 module, it behaves as a rogue Access Point with a web admin panel, built-in Wi-Fi scanner, 802.11 <em>deauthentication</em> frame injection without channel hopping, and a captive portal that validates <strong>in real time</strong> the submitted password against the true target network. Educational study built to document WPA2-Personal's structural flaws and argue the migration to WPA3-SAE + 802.11w.
+      </p>
+
+      <div class="project-meta-row">
+        <div>
+          <span class="label">Hardware</span>
+          <span class="value">ESP32-S3 · single radio</span>
+        </div>
+        <div>
+          <span class="label">Framework</span>
+          <span class="value">Arduino-ESP32 ≥ 3.x · IDF 5.x</span>
+        </div>
+        <div>
+          <span class="label"><span lang-block="fr">Statut</span><span lang-block="en">Status</span></span>
+          <span class="value"><span lang-block="fr">Fonctionnel</span><span lang-block="en">Working</span></span>
+        </div>
+        <div>
+          <span class="label">Repo</span>
+          <span class="value private">🔒 <span lang-block="fr">Privé · accès sur demande</span><span lang-block="en">Private · on request</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-body">
+    <div class="container">
+
+      <!-- ===== DISCLAIMER LÉGAL ===== -->
+      <div class="callout">
+        <span class="label"><span lang-block="fr">Cadre légal &amp; éthique</span><span lang-block="en">Legal &amp; ethical scope</span></span>
+        <p lang-block="fr">
+          Ce firmware a été conçu et testé <strong>exclusivement</strong> contre mon propre SSID, avec mon propre mot de passe, sur mon propre matériel, à faible puissance TX et hors de portée de réseaux tiers. Le dépôt source est en <strong>accès privé</strong>. Toute reproduction contre un réseau qui ne vous appartient pas, sans autorisation écrite explicite de son propriétaire, est un <strong>délit pénal</strong> — au Maroc via la <strong>loi n° 07-03</strong> (art. 607-3 et 607-10 du Code pénal), ailleurs via le CFAA (US), le Computer Misuse Act (UK), l'art. 323-1 et suivants (FR), etc. Le code n'est pas fourni sur cette page ; un accès lecture peut être accordé sur demande motivée (stage, recherche académique, évaluation par un recruteur).
+        </p>
+        <p lang-block="en">
+          This firmware was designed and tested <strong>exclusively</strong> against my own SSID, with my own passphrase, on my own hardware, at low TX power and out of range of any third-party network. The source repository is <strong>private</strong>. Reproducing this against a network you don't own, without explicit written authorization from its owner, is a <strong>criminal offense</strong> — in Morocco via <strong>law 07-03</strong> (articles 607-3 and 607-10 of the Criminal Code), elsewhere via the CFAA (US), the Computer Misuse Act (UK), art. 323-1 ff. (FR), etc. Code is not shared on this page; read access may be granted on motivated request (internship, academic research, recruiter review).
+        </p>
+      </div>
+
+      <!-- ===== Pourquoi ESP32-S3 ===== -->
+      <h2 lang-block="fr">Pourquoi un ESP32-S3 plutôt qu'un PC Linux</h2>
+      <h2 lang-block="en">Why ESP32-S3 over a Linux laptop</h2>
+
+      <p lang-block="fr">
+        Les tutoriels grand public font tourner ce type d'attaque sous Kali avec <code>hostapd</code> + <code>dnsmasq</code> + <code>aircrack-ng</code> sur deux cartes USB. Ça marche, mais ça masque la réalité : un <strong>ESP32-S3 à 5 €, alimenté sur batterie, tient dans la paume</strong>. Le passage au monde embarqué change totalement la perspective défensive — un module aussi petit, autonome, qui diffuse un portail captif crédible, ce n'est plus un scénario théorique, c'est une menace plausible dans un café, un aéroport, un hall de conférence. L'objectif pédagogique du projet est précisément de <strong>rendre tangible</strong> cette menace pour mieux justifier les mitigations côté infrastructure et côté utilisateur.
+      </p>
+      <p lang-block="en">
+        Mainstream tutorials run this attack on Kali with <code>hostapd</code> + <code>dnsmasq</code> + <code>aircrack-ng</code> on two USB NICs. It works, but it hides reality: a <strong>€5 ESP32-S3, battery-powered, palm-sized</strong>. Moving to the embedded side completely shifts the defensive perspective — a module this small, standalone, serving a credible captive portal, stops being theoretical and becomes a plausible threat in a café, airport, or conference hall. The educational goal of this project is precisely to <strong>make that threat tangible</strong> to better justify mitigations on both the infrastructure and user sides.
+      </p>
+
+      <!-- ===== Architecture ===== -->
+      <h2 lang-block="fr">Architecture du firmware</h2>
+      <h2 lang-block="en">Firmware architecture</h2>
+
+<pre class="ascii-diagram">
+                   ┌──────────────────────────────┐
+                   │   ESP32-S3 (radio unique)    │
+                   │                              │
+  ┌── WIFI_IF_AP ──┤  AP admin  WiPhi_xxxx  ch1   │
+  │  (admin only)  │  WPA2, panel /admin          │
+  │                │                              │
+  │                │  ou : AP clone du SSID cible │──── air ───▸ victime
+  │                │  ouvert, sur canal cible     │
+  │                │                              │
+  └── WIFI_IF_STA ─┤  tentative de conn. au vrai  │──── air ───▸ AP légitime cible
+     (live test)   │  réseau avec le MDP saisi    │
+                   │                              │
+                   │  DNSServer (wildcard → self) │
+                   │  WebServer (80)              │
+                   │  Injection 0xC0 / 0xA0       │
+                   │  via esp_wifi_internal_tx()  │
+                   └──────────────────────────────┘
+
+  ▸ Scan périodique (toutes les 15 s) tant que evil twin inactif
+  ▸ Deauth broadcast toutes les 500 ms quand la cible est verrouillée
+  ▸ Pas de saut de canal : l'AP clone démarre sur target.ch
+</pre>
+
+      <h3 lang-block="fr">Les 4 pages servies</h3>
+      <h3 lang-block="en">The 4 served pages</h3>
+
+      <ul lang-block="fr">
+        <li><code>/admin</code> — panneau de contrôle (thème sombre) : liste des SSIDs scannés avec RSSI / canal / BSSID, sélection de la cible, boutons Deauth / EvilTwin, affichage du mot de passe capturé.</li>
+        <li><code>/login</code> — portail captif (thème clair façon page système) : pretexte <em>« Mise à jour du firmware échouée — confirmez votre mot de passe Wi-Fi pour restaurer l'ancienne version »</em>. Le pretexte social est volontaire — c'est la vraie vulnérabilité, pas la partie technique.</li>
+        <li><code>/portal</code> — écran d'attente avec spinner et barre de progression animée (~16 s), le temps que le firmware tente la connexion au vrai réseau.</li>
+        <li><code>/success</code> — confirmation que le « firmware a été restauré » : la victime repart sans soupçon, l'AP clone reste ouvert sur le canal admin.</li>
+      </ul>
+      <ul lang-block="en">
+        <li><code>/admin</code> — control panel (dark theme): list of scanned SSIDs with RSSI / channel / BSSID, target selection, Deauth / EvilTwin toggle buttons, captured password display.</li>
+        <li><code>/login</code> — captive portal (light theme, system-page feel): social pretext <em>"Firmware update failed — confirm your Wi-Fi password to roll back to the previous version"</em>. The social pretext is deliberate — that's the real vulnerability, not the technical bit.</li>
+        <li><code>/portal</code> — waiting screen with animated spinner and progress bar (~16 s), while the firmware attempts connection to the real network.</li>
+        <li><code>/success</code> — confirmation that the "firmware was restored": the victim leaves without suspicion, the clone AP stays open on the admin channel.</li>
+      </ul>
+
+      <!-- ===== Points techniques ===== -->
+      <h2 lang-block="fr">Points techniques saillants</h2>
+      <h2 lang-block="en">Technical highlights</h2>
+
+      <h3 lang-block="fr">Contournement du filtre ESP-IDF 5.x sur les trames de management</h3>
+      <h3 lang-block="en">Bypassing the ESP-IDF 5.x management-frame filter</h3>
+
+      <p lang-block="fr">
+        Sur <code>arduino-esp32 ≥ 3.x</code> (basé sur IDF 5.x), l'API publique <code>esp_wifi_80211_tx()</code> rejette les frame types <code>0xC0</code> (Deauthentication) et <code>0xA0</code> (Disassociation) avec un <code>unsupport frame type</code>. La fonction <code>ieee80211_raw_frame_sanity_check()</code> qui était <em>weak symbol</em> dans les versions précédentes — et qu'on pouvait surcharger pour faire sauter le filtre — ne l'est plus. Solution retenue : descendre à l'<strong>API interne</strong> <code>esp_wifi_internal_tx()</code>, qui ne passe par aucun filtre de type de trame.
+      </p>
+      <p lang-block="en">
+        On <code>arduino-esp32 ≥ 3.x</code> (IDF 5.x-based), the public <code>esp_wifi_80211_tx()</code> API rejects frame types <code>0xC0</code> (Deauthentication) and <code>0xA0</code> (Disassociation) with <code>unsupport frame type</code>. The <code>ieee80211_raw_frame_sanity_check()</code> function — a weak symbol in older versions, overridable to disable the filter — no longer is. Chosen fix: drop down to the <strong>internal API</strong> <code>esp_wifi_internal_tx()</code>, which bypasses the frame-type filter entirely.
+      </p>
+
+<pre><code>// Trame deauth broadcast 802.11 (26 octets)
+uint8_t pkt[26] = {
+  0xC0, 0x00,                         // Frame Control : Deauthentication
+  0x00, 0x00,                         // Duration
+  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // Destination : broadcast
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // Source  : BSSID cible (spoofé)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // BSSID   : BSSID cible
+  0x00, 0x00,                         // Sequence
+  0x07, 0x00                          // Reason 7 : Class 3 frame from non-auth STA
+};
+memcpy(&pkt[10], target.bssid, 6);
+memcpy(&pkt[16], target.bssid, 6);
+esp_wifi_internal_tx(WIFI_IF_AP, pkt, sizeof(pkt));</code></pre>
+
+      <h3 lang-block="fr">Pas de saut de canal</h3>
+      <h3 lang-block="en">No channel hopping</h3>
+
+      <p lang-block="fr">
+        L'ESP32-S3 n'a qu'une seule radio. Si on fait <code>esp_wifi_set_channel()</code> pour injecter sur le canal de la cible pendant qu'un client est connecté à notre AP admin, on déconnecte ce client. Le design choisi ici contourne le problème : <strong>l'AP clone est démarré directement sur <code>target.ch</code></strong> via <code>softAP(ssid, "", channel)</code>. L'injection deauth se fait sur le canal courant de l'AP — aucun saut nécessaire, l'attaquant reste connecté à son panneau admin pendant toute l'opération.
+      </p>
+      <p lang-block="en">
+        The ESP32-S3 has a single radio. Calling <code>esp_wifi_set_channel()</code> to inject on the target's channel while a client is connected to our admin AP would disconnect that client. The chosen design sidesteps this: <strong>the clone AP is started directly on <code>target.ch</code></strong> via <code>softAP(ssid, "", channel)</code>. Deauth injection happens on the AP's current channel — no hopping required, the attacker stays connected to the admin panel throughout.
+      </p>
+
+      <h3 lang-block="fr">Validation du mot de passe en direct</h3>
+      <h3 lang-block="en">Live password validation</h3>
+
+      <p lang-block="fr">
+        Quand la victime soumet <code>/login</code>, le firmware passe en mode STA et tente immédiatement <code>WiFi.begin(target.ssid, triedPwd, target.ch, target.bssid)</code>. Si <code>WiFi.status() == WL_CONNECTED</code> → le mot de passe est bon, on l'affiche dans le panel admin et la victime est redirigée vers <code>/success</code>. Sinon → retour vers <code>/login</code> et la deauth reprend pour forcer une nouvelle tentative. Aucun mot de passe bidon n'est capturé — la victime ne peut pas s'en sortir avec un faux.
+      </p>
+      <p lang-block="en">
+        When the victim submits <code>/login</code>, the firmware switches to STA mode and immediately attempts <code>WiFi.begin(target.ssid, triedPwd, target.ch, target.bssid)</code>. If <code>WiFi.status() == WL_CONNECTED</code> → password is valid, displayed in the admin panel, victim redirected to <code>/success</code>. Otherwise → back to <code>/login</code> and deauth resumes, forcing another attempt. No bogus passwords get captured — the victim can't escape with a fake one.
+      </p>
+
+      <h3 lang-block="fr">Gestion des sondes captive-portal multi-OS</h3>
+      <h3 lang-block="en">Multi-OS captive-portal probe handling</h3>
+
+      <p lang-block="fr">
+        Chaque OS a ses propres URL de détection de captive portal. Le firmware les route explicitement :
+      </p>
+      <p lang-block="en">
+        Each OS has its own captive-portal detection URL. The firmware routes them explicitly:
+      </p>
+
+<pre><code>// Android — renvoyer 204 No Content stoppe la popup automatique
+server.on("/generate_204",  [](){ server.send(204, "text/plain", ""); });
+server.on("/gen_204",       [](){ server.send(204, "text/plain", ""); });
+
+// Apple — servir le portail
+server.on("/hotspot-detect.html", handleCaptive);
+
+// Windows — mimer Microsoft NCSI
+server.on("/ncsi.txt", [](){ server.send(200, "text/plain", "Microsoft NCSI"); });</code></pre>
+
+      <!-- ===== Mitigations ===== -->
+      <h2 lang-block="fr">Contre-mesures — la partie importante</h2>
+      <h2 lang-block="en">Mitigations — the important part</h2>
+
+      <h3 lang-block="fr">Côté utilisateur</h3>
+      <h3 lang-block="en">User side</h3>
+      <ul lang-block="fr">
+        <li>Supprimer les profils Wi-Fi publics / ouverts non utilisés — coupe l'auto-join sur SSID connu.</li>
+        <li>Ne jamais saisir de mot de passe sur une page servie en HTTP. Cadenas absent, HSTS non actif → on s'arrête.</li>
+        <li>VPN systématique sur Wi-Fi non maîtrisé. La gratuité d'un service Wi-Fi n'est pas un critère de confiance.</li>
+        <li>Sur iOS / Android : désactiver la reconnexion automatique aux réseaux ouverts.</li>
+      </ul>
+      <ul lang-block="en">
+        <li>Delete unused open / public Wi-Fi profiles — breaks auto-join on known SSIDs.</li>
+        <li>Never type a password on an HTTP page. No padlock, no active HSTS → stop.</li>
+        <li>Always-on VPN on any Wi-Fi you don't control. Free ≠ trusted.</li>
+        <li>iOS / Android: disable auto-join to open networks.</li>
+      </ul>
+
+      <h3 lang-block="fr">Côté infrastructure</h3>
+      <h3 lang-block="en">Infrastructure side</h3>
+      <ul lang-block="fr">
+        <li><strong>WPA3-SAE</strong> — le handshake Dragonfly résiste aux attaques offline classiques. Migration en priorité.</li>
+        <li><strong>802.11w (PMF)</strong> en mode <em>required</em> — les trames de management sont signées, les deauth deviennent inutilisables. C'est ce qui casse précisément ce projet.</li>
+        <li><strong>WIDS</strong> (Kismet, Aruba RFProtect, Cisco WIPS) qui alerte sur un ESSID dupliqué avec un BSSID inattendu.</li>
+        <li>En environnement pro — <strong>802.1X / WPA2-Enterprise</strong> avec <strong>vérification stricte du certificat serveur côté client</strong>. Ce paramètre est mal configuré dans 90 % des déploiements ; à auditer.</li>
+      </ul>
+      <ul lang-block="en">
+        <li><strong>WPA3-SAE</strong> — the Dragonfly handshake resists classic offline attacks. Top migration priority.</li>
+        <li><strong>802.11w (PMF)</strong> in <em>required</em> mode — management frames get signed, deauth becomes unusable. This is exactly what breaks the current project.</li>
+        <li><strong>WIDS</strong> (Kismet, Aruba RFProtect, Cisco WIPS) that alerts on duplicate ESSID under unexpected BSSID.</li>
+        <li>In enterprise — <strong>802.1X / WPA2-Enterprise</strong> with <strong>strict server-certificate validation on the client</strong>. Misconfigured in 90 % of deployments; needs auditing.</li>
+      </ul>
+
+      <!-- ===== Accès code source ===== -->
+      <h2 lang-block="fr">Accès au code source</h2>
+      <h2 lang-block="en">Source code access</h2>
+
+      <p lang-block="fr">
+        Le dépôt <code>evil-twin-esp32</code> est maintenu en <strong>privé</strong>. Un accès en lecture peut être accordé au cas par cas : recruteur avec email pro vérifiable, encadrant académique, chercheur sécurité. Demande à envoyer à <a href="mailto:yassirmoussa754@gmail.com">yassirmoussa754@gmail.com</a> avec un contexte bref (qui vous êtes, pourquoi l'accès).
+      </p>
+      <p lang-block="en">
+        The <code>evil-twin-esp32</code> repository is kept <strong>private</strong>. Read access may be granted case by case: recruiter with verifiable work email, academic supervisor, security researcher. Send a request to <a href="mailto:yassirmoussa754@gmail.com">yassirmoussa754@gmail.com</a> with a short context (who you are, why you want access).
+      </p>
+
+      <!-- ===== Références ===== -->
+      <h2 lang-block="fr">Références</h2>
+      <h2 lang-block="en">References</h2>
+
+      <ul>
+        <li>Vanhoef &amp; Piessens — <em>Key Reinstallation Attacks: Forcing Nonce Reuse in WPA2</em> · CCS 2017 (KRACK).</li>
+        <li>Vanhoef &amp; Ronen — <em>Dragonblood: Analyzing the Dragonfly Handshake of WPA3 and EAP-pwd</em> · 2019.</li>
+        <li>IEEE 802.11-2020 — Protected Management Frames section (802.11w).</li>
+        <li>Espressif — <em>ESP-IDF Wi-Fi Driver</em>, fonctions publiques vs internes.</li>
+      </ul>
+
+      <div class="callout" style="margin-top:2.5rem">
+        <span class="label"><span lang-block="fr">Rappel final</span><span lang-block="en">Final reminder</span></span>
+        <p lang-block="fr">
+          À des fins éducatives et de lab personnel uniquement. L'usage de ces techniques hors de votre propre infrastructure, sans autorisation écrite explicite de son propriétaire, est un délit pénal. Les disclaimers n'ont pas force de loi.
+        </p>
+        <p lang-block="en">
+          Educational and personal-lab use only. Using these techniques outside your own infrastructure, without explicit written authorization from its owner, is a criminal offense. Disclaimers carry no legal force.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span data-year></span> · Moussa Yassir Mouyiwa</span>
+    <span class="mono">project 002 · private repo</span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
